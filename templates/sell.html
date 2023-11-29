@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Sell
+{% endblock %}
+
+{% block main %}
+<div class="container">
+    <div class="section">
+        <h5>Choose stock to sell:</h5>
+    </div>
+    <br>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-4">
+                <form action="/sell" method="post" class="d-flex justify-content-evenly">
+                    <select name="symbol" class="p-2">
+                        <option value="value" selected disabled>Choose:</option>
+                        {% for symbol in wallet %}
+                            <option value="{{symbol}}">{{symbol}}</option>
+                        {% endfor %}
+                    </select>
+                    <input autocomplete="off" required min="1" class="p-1" id="shares" name="shares" placeholder="Number of shares" type="number">
+                    <button class="p-2 btn btn-primary" type="submit">Sell</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

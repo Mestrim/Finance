@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Main
+{% endblock %}
+
+{% block main %}
+<div class="container">
+    <div class="section">
+        <h5>Cash balance: {{ cash }}  </h5>
+        <h5>Stocks total value plus cash: {{ total }}  </h5>
+    </div>
+    <br>
+    <table class = "table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col" class="col">Stock symbol</th>
+                <th scope="col" class="col">Number of shares</th>
+                <th scope="col" class="col">Current price per stock</th>
+                <th scope="col" class="col">Total value</th>
+                <th scope="col" class="col-sm-3 col-md-2 col-lg-1">Buy</th>
+                <th scope="col" class="col-sm-3 col-md-2 col-lg-1">Sell</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for stock in wallet %}
+                <tr>
+                    <td>{{stock.symbol}}</td>
+                    <td>{{stock.count}}</td>
+                    <td>{{stock.price}}</td>
+                    <td>{{stock.value}}</td>
+                    <td>
+                        <form action="/buy" method="post">
+                            <div class="mb-3">
+                                <input autocomplete="off"  min="1" required class="form-control mx-auto w-lg-10 " id="shares" name="shares" placeholder="Number" type="number">
+                                <input name="symbol" type="hidden" value="{{ stock.symbol }}">
+                            </div>
+                            <button class="btn btn-primary" type="submit">Buy</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="/sell" method="post">
+                            <div class="mb-3">
+                                <input autocomplete="off" min="1" required class="form-control mx-auto w-lg-10 " id="shares" name="shares" placeholder="Number" type="number">
+                                <input name="symbol" type="hidden" value="{{ stock.symbol }}">
+                            </div>
+                            <button class="btn btn-primary" type="submit">Sell</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

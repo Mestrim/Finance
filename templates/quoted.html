@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quote
+{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <h2>Quote</h2>
+        <table class = "table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col" class="col-1">Symbol</th>
+                    <th scope="col" class="col-1">Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ symbol }}</td>
+                    <td>{{ price }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <br>
+    <a href="/quote"><button class="btn btn-primary">Back</button></a>
+    <a href="/"><button class="btn btn-primary">Home</button></a>
+{% endblock %}

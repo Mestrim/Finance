@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+<div class="container">
+    <div class="section">
+        <h5>Transactions history</h5>
+    </div>
+    <br>
+    <table class = "table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th scope="col" class="col-1">Time</th>
+                <th scope="col" class="col-1">Stock symbol</th>
+                <th scope="col" class="col-1">Count</th>
+                <th scope="col" class="col-1">Price per stock</th>
+                <th scope="col" class="col-1">Operation</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for stock in history %}
+                <tr>
+                    <td>{{stock.time}}</td>
+                    <td>{{stock.symbol}}</td>
+                    <td>{{stock.count}}</td>
+                    <td>{{stock.price}}</td>
+                    <td>{{stock.operation}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
