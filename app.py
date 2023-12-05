@@ -1,11 +1,9 @@
 import os
-
+import re
 from cs50 import SQL
 from flask import Flask, flash, redirect, render_template, request, session
 from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
-import re
-
 from helpers import apology, login_required, lookup, usd, check_password_strength
 
 # Configure application
@@ -22,7 +20,6 @@ Session(app)
 # Configure CS50 Library to use SQLite database
 db = SQL("sqlite:///finance.db")
 
-
 @app.after_request
 def after_request(response):
     """Ensure responses aren't cached"""
@@ -30,7 +27,6 @@ def after_request(response):
     response.headers["Expires"] = 0
     response.headers["Pragma"] = "no-cache"
     return response
-
 
 @app.route("/")
 @login_required
@@ -492,3 +488,7 @@ def addcash():
         )
         currentcash = usd(currentcash[0]["cash"])
         return render_template("addcash.html", currentcash=currentcash)
+
+if __name__ == "__main__":
+    # Please do not set debug=True in production
+    app.run(host="0.0.0.0", port=5000, debug=True)
